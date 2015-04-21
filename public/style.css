@@ -1,0 +1,104 @@
+html, body {
+  height: 100%;
+  margin:0;
+  padding:0;
+}
+
+
+.banner {
+	background-color: #18376A;
+	width: 100%;
+	height: 100px;
+	margin: 0;
+	padding: 20px;
+}
+
+.banner h1 {
+	text-align: center;
+	color: white;
+}
+
+.domain {
+	margin-top: 50px;
+}
+
+#democrats {
+	float: left;
+	height: 300px;
+	margin-left: 280px;
+}
+
+#graph {
+	margin-top: 30px;
+	height: 400px;
+}
+
+#republicans {
+	float: right;
+	height: 300px;
+	margin-right: 280px;
+}
+
+#democrat-header {
+	float: left;
+	margin-left: 100px;
+	text-align: center;
+	size: 3em;
+}
+
+#vs {
+	margin-left: 10px;
+	float:left;
+	text-align: center;
+	size: 3em;
+
+}
+
+#republican-header {
+	margin-left: 10px;
+	float: left;
+	text-align: center;
+	size: 3em;
+
+}
+
+
+.title {
+	border-radius: 10px;
+    padding: 4px; 
+    width: 200px;
+    height: 50px;
+    color: white;
+    size: 2em;
+    text-align: center;
+}
+
+.list {
+    margin-top: 30px;
+    padding: 2px;
+    padding-top: 5px;
+    width: 200px;
+    height: 220px;
+    color: black;
+}
+
+
+.republican-background{
+	background-color: #B13B3C;
+}
+
+.republican-background-2{
+	background-color: #DFA9AA;
+}
+
+
+.democrat-background{
+	background-color: #3F6CAF;
+}
+
+
+.democrat-background-2{
+	background-color: #ABC1E0;
+}
+
+
