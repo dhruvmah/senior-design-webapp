@@ -8,9 +8,10 @@ var async = require("async");
  * Redirects to login page if invalid credentials
  */
 
+
 exports.index = function(req, res) {
     republican_domains =  ["Saab", "Volvo", "BMW", "Saab", "Volvo", "BMW", "Saab", "Volvo", "BMW", "BMW"];
-    democrat_domains =  ["Saab", "Volvo", "BMW", "Saab", "Volvo", "BMW", "Saab", "Volvo", "BMW", "BMW"];;
+    democrat_domains =  ["Saab", "Volvo", "BMW", "Saab", "Volvo", "BMW", "Saab", "Volvo", "BMW", "BMW"];
     res.render("home.ejs", {republican_domains: republican_domains, democrat_domains: democrat_domains});
 };
 
