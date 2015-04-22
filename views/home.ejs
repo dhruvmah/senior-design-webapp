@@ -17,124 +17,85 @@
             url: "/cluster",
             method: "GET",
         });
-        request.done(function (msg) {
+        request.done(function (clusters) {
+            //Gets datapoints from clusters and puts them in the chart
+            var dataPoints1 = [];
+            var dataPoints2 = [];
+            for (var i = 0; i < clusters.length; i++) {
+                var cluster = clusters[i];
+                var dataPoint1 = {y: cluster["demRatio"], label: cluster["name"]};
+                var dataPoint2 = {y: cluster["repRatio"], label: cluster["name"]};
+                dataPoints1.push(dataPoint1);
+                dataPoints2.push(dataPoint2);
+            }
+            
             var chart = new CanvasJS.Chart("chartContainer",
             {
                 toolTip: {
                     content: function (e) {
-                        return e.entries[0].dataPoint.label + " " + msg;
+                        var name = e.entries[0].dataPoint.label;
+                        console.log(clusters);
+                        for (var i = 0; i < clusters.length; i++) {
+                            var cluster = clusters[i];
+                            console.log(cluster);
+                            console.log(cluster["name"]);
+                            if (cluster["name"] === name) {
+                                var keys = Object.keys(cluster["keywords"]);
+                                return name + " " + keys;
+                            }
+                        }
+                        return "No keys found"
                     }
                 },
                 title:{
                     text: "Topic clusters and demographic share ratios"
                 },
 
-                data:[
+                data: [
+                {
+                    type: "stackedBar100",
+                    dataPoints: dataPoints1
+                },
+                {
+                    type: "stackedBar100",
+                    dataPoints: dataPoints2
+                },
+
+                ]
+
+                // data:[
                 
-                {
-                    // mouseover: function(e){
-                    //     var request = $.ajax({
-                    //       url: "/cluster",
-                    //       method: "GET",
-                    //     });
+                // {
+                //     type: "stackedBar100",
+                //     dataPoints: [
+                //     {y: 600, label: "Water Filter" },
+                //     {y: 450, label: "Modern Chair" },
+                //     {y: 120, label: "VOIP Phone" },
+                //     {y: 250, label: "Microwave" },
+                //     {y: 120, label: "Water Filter" },
+                //     {y: 374, label: "Expresso Machine" },
+                //     {y: 350, label: "Lobby Chair" }
 
-                    //     request.done(functi1on( msg ) {
-                    //         for(item in msg) {
-                    //             $("#cluster-keywords").append("<tr><td>" + item + "</td></tr>");
-                    //         }
-                    //         alert(e.dataPoint.label + " " + msg);
-                    //         $('#cluster-keyword').css("visibility", "visible");
-                    //     });
-                    // },
-                    type: "stackedBar100",
-                    dataPoints: [
-                    {y: 600, label: "Water Filter" },
-                    {y: 400, label: "Modern Chair" },
-                    {y: 120, label: "VOIP Phone" },
-                    {y: 250, label: "Microwave" },
-                    {y: 120, label: "Water Filter" },
-                    {y: 374, label: "Expresso Machine" },
-                    {y: 350, label: "Lobby Chair" }
+                //     ]
+                // },
+                // {
+                //     type: "stackedBar100",
+                //     dataPoints: [
+                //     {y: 400, label: "Water Filter" },
+                //     {y: 550, label: "Modern Chair" },
+                //     {y: 220, label: "VOIP Phone" },
+                //     {y: 350, label: "Microwave" },
+                //     {y: 220, label: "Water Filter" },
+                //     {y: 474, label: "Expresso Machine" },
+                //     {y: 450, label: "Lobby Chair" }
 
-                    ]
-                },
-                {
-                    type: "stackedBar100",
-                    dataPoints: [
-                    {y: 400, label: "Water Filter" },
-                    {y: 500, label: "Modern Chair" },
-                    {y: 220, label: "VOIP Phone" },
-                    {y: 350, label: "Microwave" },
-                    {y: 220, label: "Water Filter" },
-                    {y: 474, label: "Expresso Machine" },
-                    {y: 450, label: "Lobby Chair" }
-
-                    ]
-                },
-                ]
+                //     ]
+                // },
+                // ]
 
             });
-            chart.render();
-        });
-var chart = new CanvasJS.Chart("chartContainer",
-{
-    toolTip: {
-        content: function (e) {
-            console.log(e.entries[0].dataPoint.label);
-            return e.entries[0].dataPoint.label + " " + keywords;
-        }
-    },
-    title:{
-        text: "Topic clusters and demographic share ratios"
-    },
-
-    data:[
-
-    {
-                    // mouseover: function(e){
-                    //     var request = $.ajax({
-                    //       url: "/cluster",
-                    //       method: "GET",
-                    //     });
-
-                    //     request.done(functi1on( msg ) {
-                    //         for(item in msg) {
-                    //             $("#cluster-keywords").append("<tr><td>" + item + "</td></tr>");
-                    //         }
-                    //         alert(e.dataPoint.label + " " + msg);
-                    //         $('#cluster-keyword').css("visibility", "visible");
-                    //     });
-                    // },
-                    type: "stackedBar100",
-                    dataPoints: [
-                    {y: 600, label: "Water Filter" },
-                    {y: 400, label: "Modern Chair" },
-                    {y: 120, label: "VOIP Phone" },
-                    {y: 250, label: "Microwave" },
-                    {y: 120, label: "Water Filter" },
-                    {y: 374, label: "Expresso Machine" },
-                    {y: 350, label: "Lobby Chair" }
-
-                    ]
-                },
-                {
-                    type: "stackedBar100",
-                    dataPoints: [
-                    {y: 400, label: "Water Filter" },
-                    {y: 500, label: "Modern Chair" },
-                    {y: 220, label: "VOIP Phone" },
-                    {y: 350, label: "Microwave" },
-                    {y: 220, label: "Water Filter" },
-                    {y: 474, label: "Expresso Machine" },
-                    {y: 450, label: "Lobby Chair" }
-
-                    ]
-                },
-                ]
-
-            });
-
 chart.render();
+});
 }
 </script>
 <script type="text/javascript" src="/canvasjs.min.js"></script>
@@ -168,7 +129,7 @@ chart.render();
 
 
 
-        <div id="chartContainer" style="height: 300px; width: 80%">
+        <div id="chartContainer" style="height: 300px; width: 60%">
         </div>
 
         <table id="cluster-keywords">

@@ -16,6 +16,13 @@ exports.index = function(req, res) {
 };
 
 exports.cluster = function(req, res) {
-    clusterOne = ["a", "b", "c", "d"];
-    res.send(clusterOne);
+
+    articlesOne = ["alpha", "beta", "gamma"];
+    articlesTwo = ["who", "what", "when", "why"];
+    keyWordsOne = {"a": articlesOne, "b": articlesTwo, "c": articlesOne, "d": articlesTwo};
+    keyWordsTwo = {"e": articlesTwo, "f": articlesOne, "g": articlesTwo, "h": articlesOne};
+    clusterOne = {"name": "Immigration", "keywords": keyWordsOne, "demRatio": .30, "repRatio": .70};
+    clusterTwo = {"name": "Gun Control", "keywords": keyWordsTwo, "demRatio": .60, "repRatio": .40};
+    clusters = [clusterOne, clusterTwo];
+    res.send(clusters);
 }
