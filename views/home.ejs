@@ -22,14 +22,18 @@
               data:[
                 
                   {
-                    click: function(e){
+                    mouseover: function(e){
                         var request = $.ajax({
                           url: "/cluster",
                           method: "GET",
                         });
                          
                         request.done(function( msg ) {
+                            for(item in msg) {
+                                $("#cluster-keywords").append("<tr><td>" + item + "</td></tr>");
+                            }
                             alert(e.dataPoint.label + " " + msg);
+                            $('#cluster-keyword').css("visibility", "visible");
                         });
                     },
                     type: "stackedBar100",
@@ -98,6 +102,10 @@
         <div id="chartContainer" style="height: 300px; width: 80%">
         </div>
 
+        <table id="cluster-keywords">
+            <tr> <td>adfad </td> </tr>
+            <tr> <td>adfad </td> </tr>
+        </table>
 
         </div>
 

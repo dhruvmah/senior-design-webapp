@@ -16,5 +16,5 @@ exports.index = function(req, res) {
 
 exports.cluster = function(req, res) {
     clusterOne = ["a", "b", "c", "d"];
-    res.send(clusterOne);   
+    res.send(clusterOne);
 }
