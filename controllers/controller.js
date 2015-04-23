@@ -26,3 +26,7 @@ exports.cluster = function(req, res) {
         res.send(clusters);
     });
 };
+exports.articles = function(req, res) {
+    console.log(req.body);
+    res.render("articles.ejs", {key: req.body.key, cluster: req.body.cluster});
+}
