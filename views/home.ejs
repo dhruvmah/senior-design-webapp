@@ -41,15 +41,26 @@
                         for (var i = 0; i < clusters.length; i++) {
                             var cluster = clusters[i];
                             if (cluster["name"] === name) {
-                                var keys = cluster["keywords"];
+                                var keywords = cluster["main_keywords"];
+
                                 var retString = name;
-                                for (var j = 0; j < keys.length; j++) {
-                                    var key = keys[j];
-                                    retString += " <form id=\"" + key + "\" action=\"articles\" method=\"post\">"
-                                        + "<a href=\"javascript:;\" onclick=\"parentNode.submit();\">" + key + "</a>"
-                                        + "<input type=\"hidden\" name=\"key\" value=\"" + key + "\"/>"
-                                        + "<input type=\"hidden\" name=\"cluster\" value=\"" + name + "\"/>"
-                                        + "</form>";
+                                for (var j = 0; j < keywords.length; j++) {
+                                    var keyword = keywords[j];
+                                    retString += " <a href=\"javascript:void(0)\" id=\"" + keyword + "\">" + keyword + "</a>";
+
+                                    //This bit doesn't work because the element doesn't exist yet :/
+                                    //From here...
+                                    $("#" + keyword).click(function () {
+                                        console.log("This happens");
+                                        var htmlString = "<ol>";
+                                        for (var k = 0; k < keywords[key].length; k++) {
+                                            var article = keywords[key][k];
+                                            htmlString += "<li>" + "<a href=\"" + article + "\">" + article + "</a><li>";
+                                        }
+                                        htmlString += "</ol>";
+                                        $("#keyword-articles").replaceWith(htmlString);
+                                    })
+                                    //To here.
                                 }
                                 return retString;
                             }
