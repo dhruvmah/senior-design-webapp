@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var async = require("async");
+var Cluster = require('../models/cluster').Cluster;
+
 /*--------------  General Functions ----------- */
 
 
@@ -16,13 +18,11 @@ exports.index = function(req, res) {
 };
 
 exports.cluster = function(req, res) {
-
-    articlesOne = ["alpha", "beta", "gamma"];
-    articlesTwo = ["who", "what", "when", "why"];
-    keyWordsOne = {"a": articlesOne, "b": articlesTwo, "c": articlesOne, "d": articlesTwo};
-    keyWordsTwo = {"e": articlesTwo, "f": articlesOne, "g": articlesTwo, "h": articlesOne};
-    clusterOne = {"name": "Immigration", "keywords": keyWordsOne, "demRatio": .30, "repRatio": .70};
-    clusterTwo = {"name": "Gun Control", "keywords": keyWordsTwo, "demRatio": .60, "repRatio": .40};
-    clusters = [clusterOne, clusterTwo];
-    res.send(clusters);
-}
+    Cluster.find("", function(err, clusters){
+        for(cluster in clusters){
+            console.log(cluster);
+            console.log(cluster["main_keywords"]);
+        }
+        res.send(clusters);
+    });
+};
