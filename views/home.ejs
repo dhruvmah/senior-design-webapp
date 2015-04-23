@@ -28,23 +28,40 @@
                 dataPoints1.push(dataPoint1);
                 dataPoints2.push(dataPoint2);
             }
-            
+
             var chart = new CanvasJS.Chart("chartContainer",
             {
                 toolTip: {
                     content: function (e) {
                         var name = e.entries[0].dataPoint.label;
-                        console.log(clusters);
                         for (var i = 0; i < clusters.length; i++) {
                             var cluster = clusters[i];
-                            console.log(cluster);
-                            console.log(cluster["name"]);
                             if (cluster["name"] === name) {
+                                var keywords = cluster["keywords"];
                                 var keys = Object.keys(cluster["keywords"]);
-                                return name + " " + keys;
+                                var retString = name;
+                                for (var j = 0; j < keys.length; j++) {
+                                    var key = keys[j];
+                                    retString += " <a href=\"javascript:void(0)\" id=\"" + key + "\">" + key + "</a>";
+
+                                    //This bit doesn't work because the element doesn't exist yet :/
+                                    //From here...
+                                    $("#" + key).click(function () {
+                                        console.log("This happens");
+                                        var htmlString = "<ol>";
+                                        for (var k = 0; k < keywords[key].length; k++) {
+                                            var article = keywords[key][k];
+                                            htmlString += "<li>" + "<a href=\"" + article + "\">" + article + "</a><li>";
+                                        }
+                                        htmlString += "</ol>";
+                                        $("#keyword-articles").replaceWith(htmlString);
+                                    })
+                                    //To here.
+                                }
+                                return retString;
                             }
                         }
-                        return "No keys found"
+                        return "Error";
                     }
                 },
                 title:{
@@ -131,6 +148,8 @@ chart.render();
 
         <div id="chartContainer" style="height: 300px; width: 60%">
         </div>
+        <div id="keyword-articles" style="height: 300px; width: 30%">
+        </div>
 
         <table id="cluster-keywords">
             <tr> <td>adfad </td> </tr>
@@ -176,9 +195,6 @@ chart.render();
         </div>
 
     </div>
-
-
-
 
 </body>
 </html>
