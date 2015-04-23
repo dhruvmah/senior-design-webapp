@@ -1,11 +1,13 @@
 var express = require('express');
 var app = express();
+var Cluster = require('./models/cluster.js').Cluster;
 var mongoose = require("mongoose");
+
 
 var uristring =
 	process.env.MONGOLAB_URI ||
 	process.env.MONGOHQ_URL ||
-	'mongodb://localhost/senior-design';
+	'mongodb://localhost/tweets';
 
 mongoose.connect(uristring, function (err, res) {
   if (err) {

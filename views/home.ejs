@@ -23,8 +23,12 @@
             var dataPoints2 = [];
             for (var i = 0; i < clusters.length; i++) {
                 var cluster = clusters[i];
-                var dataPoint1 = {y: cluster["demRatio"], label: cluster["name"]};
-                var dataPoint2 = {y: cluster["repRatio"], label: cluster["name"]};
+                var rep_count = cluster["rep_count"];
+                var dem_count = cluster["dem_count"];
+                var demRatio = dem_count / (rep_count + dem_count);
+                var repRatio = rep_count / (rep_count + dem_count);
+                var dataPoint1 = {y: demRatio, label: cluster["name"]};
+                var dataPoint2 = {y: repRatio, label: cluster["name"]};
                 dataPoints1.push(dataPoint1);
                 dataPoints2.push(dataPoint2);
             }
@@ -46,20 +50,6 @@
                                         + "<input type=\"hidden\" name=\"key\" value=\"" + key + "\"/>"
                                         + "<input type=\"hidden\" name=\"cluster\" value=\"" + name + "\"/>"
                                         + "</form>";
-
-                                    //This bit doesn't work because the element doesn't exist yet :/
-                                    //From here...
-                                    // $("#" + key).click(function () {
-                                    //     console.log("This happens");
-                                    //     var htmlString = "<ol>";
-                                    //     for (var k = 0; k < keywords[key].length; k++) {
-                                    //         var article = keywords[key][k];
-                                    //         htmlString += "<li>" + "<a href=\"" + article + "\">" + article + "</a><li>";
-                                    //     }
-                                    //     htmlString += "</ol>";
-                                    //     $("#keyword-articles").replaceWith(htmlString);
-                                    // })
-                                    //To here.
                                 }
                                 return retString;
                             }
@@ -80,39 +70,7 @@
                     type: "stackedBar100",
                     dataPoints: dataPoints2
                 },
-
                 ]
-
-                // data:[
-                
-                // {
-                //     type: "stackedBar100",
-                //     dataPoints: [
-                //     {y: 600, label: "Water Filter" },
-                //     {y: 450, label: "Modern Chair" },
-                //     {y: 120, label: "VOIP Phone" },
-                //     {y: 250, label: "Microwave" },
-                //     {y: 120, label: "Water Filter" },
-                //     {y: 374, label: "Expresso Machine" },
-                //     {y: 350, label: "Lobby Chair" }
-
-                //     ]
-                // },
-                // {
-                //     type: "stackedBar100",
-                //     dataPoints: [
-                //     {y: 400, label: "Water Filter" },
-                //     {y: 550, label: "Modern Chair" },
-                //     {y: 220, label: "VOIP Phone" },
-                //     {y: 350, label: "Microwave" },
-                //     {y: 220, label: "Water Filter" },
-                //     {y: 474, label: "Expresso Machine" },
-                //     {y: 450, label: "Lobby Chair" }
-
-                //     ]
-                // },
-                // ]
-
             });
 chart.render();
 });
@@ -149,9 +107,9 @@ chart.render();
 
 
 
-        <div id="chartContainer" style="height: 300px; width: 60%">
+        <div id="chartContainer" style="height: 1000px width: 50%">
         </div>
-        <div id="keyword-articles" style="height: 300px; width: 30%">
+        <div id="keyword-articles" style="height: 200px; width: 60%">
         </div>
 
         <table id="cluster-keywords">

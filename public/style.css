@@ -4,6 +4,7 @@ html, body {
   padding:0;
 }
 
+
 .banner {
 	background-color: #18376A;
 	width: 100%;
@@ -81,6 +82,7 @@ html, body {
     color: black;
 }
 
+
 .republican-background{
 	background-color: #B13B3C;
 }
@@ -88,6 +90,7 @@ html, body {
 .republican-background-2{
 	background-color: #DFA9AA;
 }
+
 
 .democrat-background{
 	background-color: #3F6CAF;
@@ -98,13 +101,4 @@ html, body {
 	background-color: #ABC1E0;
 }
 
-#chartContainer{
-	float: left;
-}
-
-#cluster-keywords{
-	visibility: hidden;
-	margin-top: 50px;
-	float: left;
-}
 
