@@ -41,7 +41,7 @@
                         for (var i = 0; i < clusters.length; i++) {
                             var cluster = clusters[i];
                             if (cluster["name"] === name) {
-                                var keys = cluster["keywords"];
+                                var keys = cluster["main_keywords"];
                                 var retString = name;
                                 for (var j = 0; j < keys.length; j++) {
                                     var key = keys[j];
@@ -120,7 +120,7 @@ chart.render();
 
         <div id="chartContainer" style="height: 800px; width: 100%">
         </div>
-        <div id="keyword-articles" style="height: 200px; width: 60%">
+        <div id="keyword-articles" style="height: 300px; width: 70%">
         </div>
 
         <table id="cluster-keywords">
