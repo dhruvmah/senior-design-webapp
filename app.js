@@ -38,6 +38,7 @@ app.listen(port, function() {
 //General Online
 app.get("/", controller.index);
 app.get("/cluster", controller.cluster);
+app.post("/articles", controller.articles);
 
 module.exports = app;
 

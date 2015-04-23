@@ -19,10 +19,15 @@ exports.cluster = function(req, res) {
 
     articlesOne = ["alpha", "beta", "gamma"];
     articlesTwo = ["who", "what", "when", "why"];
-    keyWordsOne = {"a": articlesOne, "b": articlesTwo, "c": articlesOne, "d": articlesTwo};
-    keyWordsTwo = {"e": articlesTwo, "f": articlesOne, "g": articlesTwo, "h": articlesOne};
+    keyWordsOne = ["a", "b", "c", "d"];
+    keyWordsTwo = ["e", "f", "g", "h"];
     clusterOne = {"name": "Immigration", "keywords": keyWordsOne, "demRatio": .30, "repRatio": .70};
     clusterTwo = {"name": "Gun Control", "keywords": keyWordsTwo, "demRatio": .60, "repRatio": .40};
     clusters = [clusterOne, clusterTwo];
     res.send(clusters);
+};
+
+exports.articles = function(req, res) {
+    console.log(req.body);
+    res.render("articles.ejs", {key: req.body.key, cluster: req.body.cluster});
 }
