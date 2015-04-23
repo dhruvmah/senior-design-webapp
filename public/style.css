@@ -30,7 +30,7 @@ html, body {
 
 #graph {
 	margin-top: 30px;
-	height: 400px;
+	height: 1000px;
 }
 
 #republicans {
@@ -50,7 +50,7 @@ html, body {
 	margin-left: 10px;
 	float:left;
 	text-align: center;
-	size: 3em;
+	size: 18pt;
 
 }
 
